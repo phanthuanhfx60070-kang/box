@@ -251,7 +251,7 @@ export default function App() {
           <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">wukong盲盒</h1>
         </div>
         <div className="flex items-center gap-2 flex-wrap justify-center">
-          <a href="https://year.wukong.lol" target="_blank" rel="noreferrer" className="px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg font-semibold transition shadow-lg shadow-purple-500/30 flex items-center gap-1 text-xs md:text-sm text-white no-underline">
+          <a href="https://year.wukong.lol/" target="_blank" rel="noreferrer" className="px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg font-semibold transition shadow-lg shadow-purple-500/30 flex items-center gap-1 text-xs md:text-sm text-white no-underline">
             <span>📅</span> 打卡领 LIFT
           </a>
           <button onClick={connectWallet} className="px-4 py-1.5 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold transition shadow-lg shadow-blue-500/30 text-xs md:text-sm">

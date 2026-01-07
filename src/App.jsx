@@ -63,7 +63,11 @@ export default function App() {
   // --- 连接钱包 ---
   const connectWallet = async () => {
     if (!ethersLib) return showToast("正在加载依赖，请稍后再试...", "warning");
-    if (!window.ethereum) return alert("请安装 MetaMask!");
+    
+    // 在预览环境中，可能没有 window.ethereum
+    if (!window.ethereum) {
+       return showToast("未检测到钱包，请在支持 Web3 的环境中打开", "error");
+    }
     
     try {
       const provider = new ethersLib.BrowserProvider(window.ethereum);
@@ -81,9 +85,10 @@ export default function App() {
       
       // 立即检查状态
       checkStatus(addr, token, ethersLib);
+      showToast("钱包连接成功", "success");
     } catch (e) {
       console.error(e);
-      showToast("连接失败", "error");
+      showToast("连接失败或用户拒绝", "error");
     }
   };
 
@@ -226,7 +231,7 @@ export default function App() {
 
   // --- 渲染 ---
   return (
-    <div className="min-h-screen flex flex-col items-center p-3 pb-20 md:p-4 bg-slate-900 text-white font-sans">
+    <div className="min-h-screen flex flex-col items-center p-3 pb-20 md:p-4 bg-slate-900 text-white font-sans overflow-x-hidden">
       <style>{`
         @keyframes shake {
           0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -246,7 +251,7 @@ export default function App() {
           <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">wukong盲盒</h1>
         </div>
         <div className="flex items-center gap-2 flex-wrap justify-center">
-          <a href="https://year.wukong.lol/" target="_blank" rel="noreferrer" className="px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg font-semibold transition shadow-lg shadow-purple-500/30 flex items-center gap-1 text-xs md:text-sm text-white no-underline">
+          <a href="#" className="px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg font-semibold transition shadow-lg shadow-purple-500/30 flex items-center gap-1 text-xs md:text-sm text-white no-underline">
             <span>📅</span> 打卡领 LIFT
           </a>
           <button onClick={connectWallet} className="px-4 py-1.5 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold transition shadow-lg shadow-blue-500/30 text-xs md:text-sm">
